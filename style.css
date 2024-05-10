@@ -148,7 +148,7 @@ a.mobile-menu-toggle.button:has( + nav#target ) {
 a.mobile-menu-toggle-close.button {
   position: absolute;
   top: 83px;
-  right: 32px;
+  right: 48px;
   padding-left: 2rem;
   background-color: #fefee8; /* Add background-color to hide Open Menu*/
 }
