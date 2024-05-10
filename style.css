@@ -1,0 +1,246 @@
+:root {
+/* set var for mobile */
+    --body-color: #0055ff;
+}
+
+/* Basic error checking on mandatory CSS properties */
+html:not([lang]),
+html[lang=""] {
+  border-top: 20px solid red;
+}
+img:not([alt]),img[alt=""] { border: 5px dashed red; }
+canvas:not([role]),canvas:not([aria-label]),canvas[role=""],canvas[aria-label=""] { border: 5px dashed red; }
+
+/* Body color set to custom property. Change colour in the the :root rule */
+body {
+  color: var(--body-color);
+}
+
+/* reset */
+* {
+  margin: 0;
+}
+
+/* Make box-sing default to border-box */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+/* Todo: move @import to html to benefit from cached fonts */
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:900|Poppins:400');
+
+html {
+  font-size: 100%;
+  font-family: 'Ubuntu', sans-serif;
+} /*16px*/
+body {
+  margin: 0;
+  background-color: hsl(197, 58%, 8%);
+  position: relative;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+body.mobile-menu-active {
+  overflow: hidden;
+}
+header {
+  height: 200px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background-color: hsl(60, 89%, 52%);
+  font-size: 1.2em;
+  color: hsl(197, 58%, 8%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+}
+footer{
+  height: 200px;
+  width: 100%;
+  background-color: hsl(60, 89%, 52%);
+  font-size: 5em;
+  color: hsl(197, 58%, 8%);
+  position: absolute;
+}
+h3 {
+  line-height: 1;
+}
+main {
+  position: relative;
+  top: 232px;
+  margin: 0 20px;
+  height: auto;
+}
+/* This below rule is somewhat pointless and the solution a bit contorted as the browsers that don't support inert also don't support selector() function syntax.
+ * To make this work you'll need to check if inert is support and if so keep the element display as set.
+ *
+@supports not selector([inert]) {
+  #one {
+    background-color: hsl(0, 48%, 46%);
+  }
+}
+*/
+main[inert] {
+  display: none;
+}
+@supports selector([inert]) {
+  main[inert] {
+    display: revert;
+  }
+}
+.inside-main {
+  background: hsla(0, 5%, 15%, 0.8);
+  min-height: 400px;
+  margin-bottom: 2em;
+  padding: 1em;
+}
+.inside-main h2 {
+  margin-bottom: 2rem;
+}
+#one {
+  background-color: hsl(282, 100%, 75%);
+}
+#two {
+  background-color: hsl(210, 100%, 75%);
+}
+#three {
+  background-color: hsl(113, 100%, 70%);
+}
+#four {
+  background-color: hsl(260, 76%, 64%);
+}
+
+/* Mobile menu button */
+a.mobile-menu-toggle.button,
+a.mobile-menu-toggle-close.button {
+  cursor: pointer;
+  z-index: 10;
+  border: none;
+  font-size: 1rem;
+  /*padding: 0.5rem;*/
+  color: #0e0e0e;
+
+  /* with Background ::before*/
+  padding: 0.5rem .2rem .5rem 2.5rem;
+  position: relative;
+  width: 100px;
+  background: transparent;
+
+}
+/* :has doesn't work as it hides the element even if the nav#target is display none
+a.mobile-menu-toggle.button:has( + nav#target ) {
+  display: none;
+}
+  */
+
+a.mobile-menu-toggle-close.button {
+  position: absolute;
+  top: 83px;
+  right: 32px;
+  padding-left: 2rem;
+  background-color: #fefee8; /* Add background-color to hide Open Menu*/
+}
+
+.mobile-menu-toggle::before,
+.mobile-menu-toggle-close::before{
+  /*content: '🍔';
+  padding-right: 5px;*/
+
+  content: '';
+  width: 37px;
+  height: 31px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="37" height="31"><path fill="%23424B5A" fill-rule="nonzero" d="M0 2.583C0 1.154 1.181 0 2.643 0h31.714C35.82 0 37 1.154 37 2.583c0 1.43-1.181 2.584-2.643 2.584H2.643C1.18 5.167 0 4.012 0 2.583ZM0 15.5c0-1.429 1.181-2.583 2.643-2.583h31.714C35.82 12.917 37 14.07 37 15.5c0 1.429-1.181 2.583-2.643 2.583H2.643C1.18 18.083 0 16.93 0 15.5Zm37 12.917C37 29.846 35.819 31 34.357 31H2.643C1.18 31 0 29.846 0 28.417c0-1.43 1.181-2.584 2.643-2.584h31.714c1.462 0 2.643 1.155 2.643 2.584Z"/></svg>');
+  background-repeat: no-repeat;
+  /*background-position: calc(100vw - 94px) 40px;*/
+  background-size: 80%;
+}
+
+/*<svg xmlns="http://www.w3.org/2000/svg" width="37" height="31"><path fill="#424B5A" fill-rule="nonzero" d="M0 2.583C0 1.154 1.181 0 2.643 0h31.714C35.82 0 37 1.154 37 2.583c0 1.43-1.181 2.584-2.643 2.584H2.643C1.18 5.167 0 4.012 0 2.583ZM0 15.5c0-1.429 1.181-2.583 2.643-2.583h31.714C35.82 12.917 37 14.07 37 15.5c0 1.429-1.181 2.583-2.643 2.583H2.643C1.18 18.083 0 16.93 0 15.5Zm37 12.917C37 29.846 35.819 31 34.357 31H2.643C1.18 31 0 29.846 0 28.417c0-1.43 1.181-2.584 2.643-2.584h31.714c1.462 0 2.643 1.155 2.643 2.584Z"/></svg>*/
+
+/* Mobile Menu */
+nav#target {
+  display: none;
+}
+nav#target:target {
+  display: flex;
+  opacity: 1;
+}
+nav#target:target menu {
+  display: block;
+}
+nav {
+  display: flex;
+  position: absolute;
+  background: rgba(255,255,255,0.9);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  /* Style for flex */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity 300ms 100ms ease-in-out;
+  opacity: 0;
+
+  z-index: 101;
+}
+nav.open {
+  opacity: 1;
+}
+menu {
+  padding-left: 0;
+  display: none;
+}
+.open menu {
+  display: block;
+}
+menu li {
+  list-style: none;
+  padding: .5rem;
+  margin-bottom: 1px;
+}
+/*  These will override anything before so set globally */
+a:link {
+  color: black;
+  background-color: pink;
+  padding: .5rem;
+  text-decoration: none;
+}
+a:visited {
+  background-color: lemonchiffon;
+  color: #9700ff;
+}
+a:hover {
+  color: #ffffff;
+  background-color: salmon;
+}
+a:active {
+  background-color: #8dd8ff;
+  color: #2142c1;
+}
+
+
+a:focus,
+button:focus {
+  /* Technically isn't needed if you don't want focus to show on click but if the framework you are using had disabled it you'll need to add it back.*/
+  outline: auto 2px Highlight;
+  outline: auto 5px -webkit-focus-ring-color;
+}
+
+

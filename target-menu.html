@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- normalize CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
+
+
+  <link rel="stylesheet" href="style.css">
+  <title>My New Project</title>
+
+</head>
+
+<body>
+
+<body>
+
+<header id="header">
+  <h3>The Mob</h3>
+  <!-- Change button to <a> so can you use href and #target.
+       Also need to add some extra padding to centre text in the button.
+    -->
+  <a href="#target" class="mobile-menu-toggle button">
+    Menu
+  </a>
+
+  <nav id="target" class="mobile-menu">
+    <a href="#close" class="mobile-menu-toggle-close button">
+      Close
+    </a>
+
+    <menu>
+      <li><a href="#p">Product</a></li>
+      <li><a href="#a">About</a></li>
+      <li><a href="#c">Contact</a></li>
+      <li><a href="#h">Home</a></li>
+    </menu>
+  </nav>
+</header>
+<main id="main" class="mobile-menu-active">
+  <div id="one" class="inside-main">
+    <h2>Product</h2>
+    <p><a href="#p">A Link</a></p>
+  </div>
+  <div id="two" class="inside-main two"></div>
+  <div id="three" class="inside-main"></div>
+  <div id="four" class="inside-main"></div>
+  <footer></footer>
+</main>
+
+</body>
+
+</body>
+<script src="action.js"></script>
+<!--
+  TLDR: scripts should be asynchronous or deferred until after the first render.
+  https://stackoverflow.com/questions/436411/where-should-i-put-script-tags-in-html-markup
+  https://developers.google.com/speed/docs/insights/BlockingJS Put small inline script is necessary
+ -->
+</html>
+
+
+
